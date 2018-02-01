@@ -41,10 +41,16 @@ class RabbitMQConan(ConanFile):
 
 
     def build(self):
+        print(self.settings.compiler)
+        raise SystemExit, 1
         with tools.chdir(self.subfolder):
             env_build = AutoToolsBuildEnvironment(self)
-            env_build.flags.append("-Wno-strict-overflow")  # Suppress a build error with gcc 5+
-            env_build.flags.append("-Wno-misleading-indentation")  # Suppress a build error in function rd_kafka_metadata_refresh_cb with gcc 6+
+
+            if self.settings.compiler == 'gcc':
+                env_build.flags.append("-Wno-strict-overflow")  # Suppress a build error with gcc 5+
+                env_build.flags.append("-Wno-misleading-indentation")  # Suppress a build error in function rd_kafka_metadata_refresh_cb with gcc 6+
+                env_build.flags.append("-Wno-format-truncation")  # Suppress a build error in function rd_kafka_broker_add with gcc 7+
+
             env_build.configure()
             self.run("make")  # Run make manually so AutoToolsBuildEnvironment doesn't pass the -j parameter. That breaks the build
 
