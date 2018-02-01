@@ -3,7 +3,7 @@ import os
 
 class RabbitMQConan(ConanFile):
     name = "rdkafka"
-    version_info = (0, 8, 4)
+    version_info = (0, 8, 6)
     version = ".".join(map(str, version_info))
     license = "MIT"
     description = "librdkafka is a C library implementation of the Apache Kafka protocol"
@@ -12,7 +12,6 @@ class RabbitMQConan(ConanFile):
     exports = "FindRdkafka.cmake"
     default_options = "shared=True"
     requires = ("OpenSSL/1.0.2k@lasote/stable", ("zlib/1.2.11@lasote/stable", "override"))
-    generators = "cmake"
     unzipped_name = "librdkafka-%s" % version
 
     @property
@@ -41,7 +40,6 @@ class RabbitMQConan(ConanFile):
             env_build = AutoToolsBuildEnvironment(self)
             env_build.configure()
             self.run("make")  # Run make manually so AutoToolsBuildEnvironment doesn't pass the -j parameter. That breaks the build
-            #env_build.make()
 
 
     def package(self):
@@ -50,7 +48,7 @@ class RabbitMQConan(ConanFile):
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.so", dst="lib", keep_path=False)
         self.copy("*.dylib", dst="lib", keep_path=False)
-        self.copy("*.a", dst="lib", keep_path=False)
+        self.copy("*.a", dst="lib", src="%s/src" % self.subfolder, keep_path=False)
 
         # Copy cmake find_package script into project
         self.copy("FindRdkafka.cmake", ".", ".")

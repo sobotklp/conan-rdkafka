@@ -10,23 +10,27 @@ Download conan client from [Conan.io](https://conan.io) and run:
 
 ## Upload packages to server
 
-    $ conan upload rdkafka/0.8.3@sobotklp/stable --all
+    $ conan upload rdkafka/0.8.6@sobotklp/stable -r <remote> --all
 
 ## Reuse the packages
 
 ### Basic setup
 
-    $ conan install rdkafka/0.8.3@sobotklp/stable
+    $ conan install rdkafka/0.8.6@sobotklp/stable
 
 ### Project setup
 
 If you handle multiple dependencies in your project, it would be better to add a *conanfile.txt*
 
     [requires]
-    rdkafka/0.8.3@sobotklp/stable
+    rdkafka/0.8.6@sobotklp/stable
 
     [generators]
     txt
     cmake
 
 
+## TODO
+
+* Update this package to support later versions of librdkafka
+* Test on Linux and Windows
