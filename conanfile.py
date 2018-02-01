@@ -65,3 +65,6 @@ class RabbitMQConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = ["rdkafka"]
+ 
+        if self.settings.os == "Linux":
+            self.cpp_info.libs.append("pthread")
