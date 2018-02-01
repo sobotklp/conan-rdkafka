@@ -38,6 +38,7 @@ class RabbitMQConan(ConanFile):
     def build(self):
         with tools.chdir(self.subfolder):
             env_build = AutoToolsBuildEnvironment(self)
+            env_build.flags.append("-Wno-strict-overflow")  # Suppress a build error with gcc 5+
             env_build.configure()
             self.run("make")  # Run make manually so AutoToolsBuildEnvironment doesn't pass the -j parameter. That breaks the build
 
