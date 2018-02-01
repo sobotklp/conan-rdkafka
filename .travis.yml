@@ -4,7 +4,7 @@ env:
      - CONAN_USERNAME: "sobotklp"
      - CONAN_LOGIN_USERNAME: "sobotklp"
      - CONAN_CHANNEL: "testing"
-     - CONAN_UPLOAD: "https://api.bintray.com/conan/sobotklp/conan "
+     - CONAN_UPLOAD: "https://api.bintray.com/conan/sobotklp/conan"
      - CONAN_STABLE_BRANCH_PATTERN: "release/*"
 
 linux: &linux

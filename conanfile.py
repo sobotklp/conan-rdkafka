@@ -30,6 +30,11 @@ class RabbitMQConan(ConanFile):
         os.unlink(self.zip_name)
 
 
+    def configure(self):
+        # Turn off electric fence for openssl
+        # This has been removed in later versions of https://github.com/lasote/conan-openssl but it is still not uploaded to conan-transit.
+        self.options["OpenSSL"].no_electric_fence = True
+
     @property
     def subfolder(self):
         return self.unzipped_name
