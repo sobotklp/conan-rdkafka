@@ -41,8 +41,6 @@ class RabbitMQConan(ConanFile):
 
 
     def build(self):
-        print(self.settings.compiler)
-        raise SystemExit, 1
         with tools.chdir(self.subfolder):
             env_build = AutoToolsBuildEnvironment(self)
 
