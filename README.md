@@ -2,6 +2,8 @@
 
 [Conan.io](https://conan.io) package for [librdkafka C/C++ library](https://github.com/edenhill/librdkafka)
 
+[![Build Status](https://travis-ci.org/sobotklp/conan-rdkafka.svg?branch=master)](https://travis-ci.org/sobotklp/conan-rdkafka)
+
 ## Build packages
 
 Download conan client from [Conan.io](https://conan.io) and run:
