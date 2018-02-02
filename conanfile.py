@@ -11,7 +11,7 @@ class RabbitMQConan(ConanFile):
     options = {"shared": [True, False]}
     exports = "FindRdkafka.cmake"
     default_options = "shared=True"
-    requires = ("OpenSSL/1.0.2k@lasote/stable", ("zlib/1.2.11@lasote/stable", "override"))
+    requires = ("OpenSSL/1.0.2n@conan/stable")
     unzipped_name = "librdkafka-%s" % version
 
     @property
@@ -29,11 +29,6 @@ class RabbitMQConan(ConanFile):
         tools.unzip(self.zip_name)
         os.unlink(self.zip_name)
 
-
-    def configure(self):
-        # Turn off electric fence for openssl
-        # This has been removed in later versions of https://github.com/lasote/conan-openssl but it is still not uploaded to conan-transit.
-        self.options["OpenSSL"].no_electric_fence = True
 
     @property
     def subfolder(self):
